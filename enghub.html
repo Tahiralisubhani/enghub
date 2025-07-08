@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enghub - Master English Language</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255,255,255,0.1);
+            color: #ffd700;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: #3498db;
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: #2980b9;
+        }
+
+        /* Learning Modules */
+        .modules {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .module-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .module-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .module-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .module-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Interactive Learning Section */
+        .interactive-section {
+            background: #ecf0f1;
+            padding: 4rem 0;
+        }
+
+        .learning-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .learning-panel {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .learning-panel h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .question {
+            margin-bottom: 2rem;
+        }
+
+        .question h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .options {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .option {
+            padding: 0.8rem;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            border-color: #3498db;
+            background: #f0f8ff;
+        }
+
+        .option.correct {
+            border-color: #27ae60;
+            background: #d5f4e6;
+        }
+
+        .option.incorrect {
+            border-color: #e74c3c;
+            background: #fdeaea;
+        }
+
+        /* Flashcard Section */
+        .flashcard {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .flashcard:hover {
+            transform: rotateY(10deg);
+        }
+
+        .flashcard.flipped {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .flashcard h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .flashcard p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Progress Section */
+        .progress-section {
+            background: #2c3e50;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .progress-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .progress-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-item h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700, #ff6b6b);
+            transition: width 2s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            color: #bdc3c7;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ffd700;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .learning-container {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Hidden class for content switching */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">📚 Enghub</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#modules">Modules</a></li>
+                        <li><a href="#interactive">Practice</a></li>
+                        <li><a href="#progress">Progress</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Master English with Enghub</h1>
+            <p>Learn English through interactive lessons, quizzes, and practical exercises</p>
+            <a href="#modules" class="btn">Start Learning</a>
+            <a href="#interactive" class="btn btn-secondary">Try Demo</a>
+        </div>
+    </section>
+
+    <section id="modules" class="modules">
+        <div class="container">
+            <h2 class="section-title">Learning Modules</h2>
+            <div class="modules-grid">
+                <div class="module-card" onclick="openModule('grammar')">
+                    <span class="module-icon">📝</span>
+                    <h3>Grammar</h3>
+                    <p>Master English grammar with comprehensive lessons and exercises</p>
+                    <a href="#" class="btn">Start Grammar</a>
+                </div>
+                <div class="module-card" onclick="openModule('speaking')">
+                    <span class="module-icon">🗣️</span>
+                    <h3>Speaking</h3>
+                    <p>Improve your pronunciation and speaking skills with interactive exercises</p>
+                    <a href="#" class="btn">Practice Speaking</a>
+                </div>
+                <div class="module-card" onclick="openModule('listening')">
+                    <span class="module-icon">👂</span>
+                    <h3>Listening</h3>
+                    <p>Enhance your listening comprehension with audio exercises</p>
+                    <a href="#" class="btn">Listen & Learn</a>
+                </div>
+                <div class="module-card" onclick="openModule('reading')">
+                    <span class="module-icon">📖</span>
+                    <h3>Reading</h3>
+                    <p>Develop reading skills with engaging texts and comprehension exercises</p>
+                    <a href="#" class="btn">Read Stories</a>
+                </div>
+                <div class="module-card" onclick="openModule('writing')">
+                    <span class="module-icon">✍️</span>
+                    <h3>Writing</h3>
+                    <p>Learn to write effectively with guided writing exercises and feedback</p>
+                    <a href="#" class="btn">Write Better</a>
+                </div>
+                <div class="module-card" onclick="openModule('vocabulary')">
+                    <span class="module-icon">🔤</span>
+                    <h3>Vocabulary</h3>
+                    <p>Expand your word knowledge with interactive vocabulary building</p>
+                    <a href="#" class="btn">Build Vocab</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="interactive" class="interactive-section">
+        <div class="container">
+            <h2 class="section-title">Interactive Learning</h2>
+            <div class="learning-container">
+                <div class="learning-panel">
+                    <h3>📋 Grammar Quiz</h3>
+                    <div class="quiz-container">
+                        <div class="question">
+                            <h4>Choose the correct form:</h4>
+                            <p>"She _____ to the store yesterday."</p>
+                            <div class="options">
+                                <div class="option" onclick="checkAnswer(this, false)">go</div>
+                                <div class="option" onclick="checkAnswer(this, true)">went</div>
+                                <div class="option" onclick="checkAnswer(this, false)">goes</div>
+                                <div class="option" onclick="checkAnswer(this, false)">going</div>
+                            </div>
+                        </div>
+                        <div class="question">
+                            <h4>Select the correct article:</h4>
+                            <p>"I saw _____ elephant at the zoo."</p>
+                            <div class="options">
+                                <div class="option" onclick="checkAnswer(this, false)">a</div>
+                                <div class="option" onclick="checkAnswer(this, true)">an</div>
+                                <div class="option" onclick="checkAnswer(this, false)">the</div>
+                                <div class="option" onclick="checkAnswer(this, false)">no article</div>
+                            </div>
+                        </div>
+                        <button class="btn" onclick="resetQuiz()">Reset Quiz</button>
+                    </div>
+                </div>
+
+                <div class="learning-panel">
+                    <h3>🎴 Vocabulary Cards</h3>
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <h3>Eloquent</h3>
+                            <p>Click to see meaning</p>
+                        </div>
+                        <div class="card-back hidden">
+                            <h3>Definition</h3>
+                            <p>Fluent and persuasive in speaking or writing</p>
+                        </div>
+                    </div>
+                    <button class="btn" onclick="nextCard()" style="margin-top: 2rem;">Next Card</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="progress" class="progress-section">
+        <div class="container">
+            <h2 class="section-title">Your Progress</h2>
+            <div class="progress-container">
+                <div class="progress-item">
+                    <h3>Grammar</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                    <p>75% Complete</p>
+                </div>
+                <div class="progress-item">
+                    <h3>Vocabulary</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                    </div>
+                    <p>60% Complete</p>
+                </div>
+                <div class="progress-item">
+                    <h3>Speaking</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 45%"></div>
+                    </div>
+                    <p>45% Complete</p>
+                </div>
+                <div class="progress-item">
+                    <h3>Listening</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                    <p>80% Complete</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="modules">
+        <div class="container">
+            <h2 class="section-title">Contact & Support</h2>
+            <div class="learning-container">
+                <div class="learning-panel">
+                    <h3>📧 Get in Touch</h3>
+                    <form id="contactForm">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Name:</label>
+                            <input type="text" name="name" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Email:</label>
+                            <input type="email" name="email" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Message:</label>
+                            <textarea name="message" rows="4" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; resize: vertical;"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="learning-panel">
+                    <h3>📚 Learning Resources</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 1rem;">
+                            <strong>📖 Study Materials:</strong><br>
+                            Download free PDF guides and worksheets
+                        </li>
+                        <li style="margin-bottom: 1rem;">
+                            <strong>🎧 Audio Lessons:</strong><br>
+                            Listen to pronunciation guides and conversations
+                        </li>
+                        <li style="margin-bottom: 1rem;">
+                            <strong>📝 Practice Tests:</strong><br>
+                            Take mock exams to test your knowledge
+                        </li>
+                        <li style="margin-bottom: 1rem;">
+                            <strong>👥 Community:</strong><br>
+                            Join our learning community and practice with others
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Enghub</h4>
+                    <p>Your comprehensive English learning platform designed to help students master the English language through interactive and practical m
